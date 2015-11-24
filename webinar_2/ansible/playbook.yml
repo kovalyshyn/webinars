@@ -2,9 +2,6 @@
 - hosts: localhost
   name: "Manage Route53"
   gather_facts: no
-  vars:
-    - IP: "194.44.213.22"
-  
   tasks:
     - route53:
         command: create
@@ -25,9 +22,28 @@
 
 
 - hosts: webitel
-  name: "Upgrade & Copy PEM files"
+  name: "Copy PEM files"
   tags: ['ssl']
   gather_facts: no
   tasks:
-    - apt: upgrade=yes cache_valid_time=3600 update_cache=yes
-    - copy: src=ssl dest=/opt/webitel/ssl owner=docker group=docker mode=0664
+    - copy: src=ssl dest=/opt/webitel/ mode=0666
+
+- hosts: webitel
+  name: "Add swap file"
+  tags: ['swap']
+  gather_facts: no
+  tasks:
+    - command: dd if=/dev/zero of=/swapfile bs=1024 count=1024k 
+    - file: path=/swapfile owner=root group=root mode=0600
+    - command: file /swapfile
+      register: swapfile
+    - command: mkswap /swapfile
+      when: swapfile.stdout.find('swap file') == -1
+    - mount: name=none
+        src=/swapfile
+        fstype=swap
+        opts=sw
+        passno=0
+        dump=0
+        state=present
+    - command: swapon /swapfile
