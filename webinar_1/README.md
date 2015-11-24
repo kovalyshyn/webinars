@@ -5,10 +5,11 @@
 - Подготовка среды под Webitel
 - Конфигурационные файлы и установка Webitel
 
+[Запись >](https://vimeo.com/146682155)
 
 ### docker-machine
 
-	docker-machine create -d virtual box demo
+	docker-machine create -d virtualbox demo
 	eval "$(docker-machine env demo)"
 	docker-machine ip demo
 	docker-machine ssh demo
