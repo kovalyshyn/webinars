@@ -1,0 +1,33 @@
+---
+- hosts: localhost
+  name: "Manage Route53"
+  gather_facts: no
+  vars:
+    - IP: "194.44.213.22"
+  
+  tasks:
+    - route53:
+        command: create
+        zone: webitel.com
+        record: demo-for-webinar.webitel.com
+        type: A
+        ttl: 7200
+        value: '{{ IP }}'
+      tags: ['add']
+    - route53:
+        command: delete                                      
+        zone: webitel.com
+        record: demo-for-webinar.webitel.com
+        type: A
+        ttl: 7200
+        value: '{{ IP }}'
+      tags: ['del']
+
+
+- hosts: webitel
+  name: "Upgrade & Copy PEM files"
+  tags: ['ssl']
+  gather_facts: no
+  tasks:
+    - apt: upgrade=yes cache_valid_time=3600 update_cache=yes
+    - copy: src=ssl dest=/opt/webitel/ssl owner=docker group=docker mode=0664
