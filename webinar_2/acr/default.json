@@ -1,0 +1,36 @@
+[
+  {
+    "ringback": {
+      "call": {
+        "name": "http://online-radioroks2.tavrmedia.ua/RadioROKS_Concert",
+        "type": "shout"
+      },
+      "transfer": {
+        "name": "http://online-radioroks2.tavrmedia.ua/RadioROKS_Concert",
+        "type": "shout"
+      }
+    }
+  },
+  {
+    "recordSession": {
+      "action": "start"
+    }
+  },
+  {
+    "answer": "183"
+  },
+  {
+    "bridge": {
+      "parameters": [
+        "absolute_codec_string=PCMA"
+      ],
+      "endpoints": [
+        {
+          "name": "gw1",
+          "type": "sipGateway",
+          "dialString": "7&reg0.$2"
+        }
+      ]
+    }
+  }
+]
