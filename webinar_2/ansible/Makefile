@@ -6,6 +6,7 @@
 #
 
 PRIVATE_KEY=~/.docker/machine/machines/demo-for-webinar.webitel.com/id_rsa
+
 IP=`docker-machine ip demo-for-webinar.webitel.com`
 
 dns-add:
