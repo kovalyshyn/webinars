@@ -18,8 +18,16 @@
     "playback": {
       "files": [
         {
-          "name": "HelloWorld.mp3",
-          "type": "mp3"
+          "name": "welcome-rus.wav",
+          "type": "wav"
+        },
+        {
+          "name": "2000",
+          "type": "silence"
+        },
+        {
+          "name": "stay_on_line.wav",
+          "type": "wav"
         }
       ]
     }
