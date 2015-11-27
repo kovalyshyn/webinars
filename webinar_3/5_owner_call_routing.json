@@ -1,0 +1,105 @@
+[
+  {
+    "ringback": {
+      "call": {
+        "name": "myRingSound.mp3",
+        "type": "mp3"
+      },
+      "transfer": {
+        "name": "myRingSound.mp3",
+        "type": "mp3"
+      }
+    }
+  },
+  {
+    "answer": "200"
+  },
+  {
+    "playback": {
+      "files": [
+        {
+          "name": "HelloWorld.mp3",
+          "type": "mp3"
+        }
+      ]
+    }
+  },
+  {
+    "recordSession": "start"
+  },
+  {
+    "setVar": [
+      "continue_on_fail=true",
+      "hangup_after_bridge=true",
+      "ignore_early_media=true"
+    ]
+  },
+  {
+    "httpRequest": {
+      "url": "https://demo-crm.bpmonline.com/0/ServiceModel/GetCallerOwnerService.svc/GetCallerOwner",
+      "exportVariables": {
+        "effective_caller_id_name": "callerIdName",
+        "owner_caller_id_number": "callerIdOwner",
+        "owner_caller_id_cell": "callerIdOwnerMob"
+      }
+    }
+  },
+  {
+    "if": {
+      "expression": "${owner_caller_id_number}",
+      "then": [
+        {
+          "bridge": {
+            "endpoints": [
+              {
+                "name": "${owner_caller_id_number}",
+                "type": "user",
+                "parameters": [
+                  "leg_timeout=15"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bridge": {
+            "endpoints": [
+              {
+                "type": "sipGateway",
+                "name": "myGW1",
+                "dialString": "${owner_caller_id_cell}",
+                "parameters": [
+                  "leg_timeout=15"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "bridge": {
+      "endpoints": [
+        {
+          "name": "100",
+          "type": "user",
+          "parameters": [
+            "leg_timeout=15"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "bridge": {
+      "endpoints": [
+        {
+          "type": "sipGateway",
+          "name": "myGW1",
+          "dialString": "89019012345"
+        }
+      ]
+    }
+  }
+]
