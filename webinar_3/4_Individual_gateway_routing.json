@@ -1,0 +1,42 @@
+[
+  {
+    "if": {
+      "expression": "${deny_world} == '1'",
+      "then": [
+        {
+          "hangup": "OUTGOING_CALL_BARRED",
+          "break": true
+        }
+      ]
+    }
+  },
+  {
+    "ringback": {
+      "call": {
+        "name": "${ru-ring}",
+        "type": "tone"
+      },
+      "transfer": {
+        "name": "${ru-ring}",
+        "type": "tone"
+      }
+    }
+  },
+  {
+    "recordSession": "start"
+  },
+  {
+    "bridge": {
+      "endpoints": [
+        {
+          "type": "sipGateway",
+          "dialString": "+&reg0.$1",
+          "name": "${gw_outbound}",
+          "parameters": [
+            "absolute_codec_string='PCMA,G729'"
+          ]
+        }
+      ]
+    }
+  }
+]

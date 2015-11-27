@@ -1,0 +1,72 @@
+[
+  {
+    "answer": "180"
+  },
+  {
+    "recordSession": "start"
+  },
+  {
+    "if": {
+      "expression": "&hour(18-20) && &wday(2-6)",
+      "then": [
+        {
+          "bridge": {
+            "endpoints": [
+              {
+                "type": "sipGateway",
+                "name": "myGW1",
+                "dialString": "+380322328001"
+              }
+            ]
+          },
+          "break": true
+        }
+      ]
+    }
+  },
+  {
+    "if": {
+      "expression": "&hour(9-20) && !&wday(2-6)",
+      "then": [
+        {
+          "bridge": {
+            "endpoints": [
+              {
+                "type": "sipGateway",
+                "name": "myGW1",
+                "dialString": "+380442225656"
+              }
+            ]
+          },
+          "break": true
+        }
+      ]
+    }
+  },
+  {
+    "if": {
+      "expression": "&hour(0-8) || &hour(21-23)",
+      "then": [
+        {
+          "recordSession": "stop"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "sleep": "1000"
+        },
+        {
+          "voicemail": {
+            "user": "100",
+            "skip_greeting": true
+          },
+          "break": true
+        }
+      ]
+    }
+  },
+  {
+    "goto": "default:100"
+  }
+]

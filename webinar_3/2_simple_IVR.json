@@ -1,0 +1,89 @@
+[
+  {
+    "ringback": {
+      "call": {
+        "name": "myMusic.wav",
+        "type": "wav"
+      },
+      "hold": {
+        "name": "myMusic.wav",
+        "type": "wav"
+      },
+      "transfer": {
+        "name": "myMusic.wav",
+        "type": "wav"
+      }
+    }
+  },
+  {
+    "answer": "200"
+  },
+  {
+    "playback": {
+      "name": "myIVRfile.wav",
+      "type": "wav",
+      "getDigits": {
+        "setVar": "getIvrDigits",
+        "min": "1",
+        "max": "1",
+        "timeout": "4000"
+      }
+    }
+  },
+  {
+    "recordSession": {
+      "action": "start"
+    }
+  },
+  {
+    "switch": {
+      "variable": "${getIvrDigits}",
+      "case": {
+        "1": [
+          {
+            "bridge": {
+              "endpoints": [
+                {
+                  "type": "user",
+                  "name": "101"
+                }
+              ]
+            }
+          }
+        ],
+        "2": [
+          {
+            "bridge": {
+              "endpoints": [
+                {
+                  "type": "user",
+                  "name": "102"
+                }
+              ]
+            }
+          }
+        ],
+        "default": [
+          {
+            "bridge": {
+              "strategy": "multiple",
+              "parameters": [
+                "instant_ringback=true"
+              ],
+              "endpoints": [
+                {
+                  "type": "user",
+                  "name": "101"
+                },
+                {
+                  "type": "user",
+                  "name": "102"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+]

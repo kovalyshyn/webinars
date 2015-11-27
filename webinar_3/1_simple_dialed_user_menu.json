@@ -1,0 +1,39 @@
+[
+  {
+    "answer": ""
+  },
+  {
+    "playback": {
+      "name": "hello.mp3",
+      "type": "mp3",
+      "getDigits": {
+        "setVar": "dialed_number",
+        "min": "3",
+        "max": "3"
+      }
+    }
+  },
+  {
+    "recordSession": "start"
+  },
+  {
+    "if": {
+      "expression": "${dialed_number} != ''",
+      "then": [
+        {
+          "goto": "default:${dialed_number}"
+        }
+      ]
+    }
+  },
+  {
+    "bridge": {
+      "endpoints": [
+        {
+          "name": "111",
+          "type": "user"
+        }
+      ]
+    }
+  }
+]
