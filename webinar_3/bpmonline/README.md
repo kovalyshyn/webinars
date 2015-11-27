@@ -32,5 +32,7 @@
 ```
 
 ![Web.config](img/3.png)
+
+Файл [GetCallerOwnerService+Mob.md](GetCallerOwnerService+Mob.md) необходимо загрузить в конфигурацию bpm’online и выполнить компиляцию кода.
    
 
