@@ -1,9 +1,9 @@
 # GetCallerOwnerService
 
-1. Установить файл [GetCallerOwnerService+Mob.md](GetCallerOwnerService+Mob.md) в `Terrasoft.WebApp/ServiceModel/`
+Установить файл [GetCallerOwnerService+Mob.md](GetCallerOwnerService+Mob.md) в `Terrasoft.WebApp/ServiceModel/`
 ![GetCallerOwnerService+Mob.md](img/1.png)
 
-2.	Добавить в файле `Terrasoft.WebApp/ServiceModel/https/services.config` код
+Добавить в файле `Terrasoft.WebApp/ServiceModel/https/services.config` код
 
 ```
 	<service name="Terrasoft.Configuration.GetCallerOwnerService.GetCallerOwnerService">
@@ -16,9 +16,9 @@
 	</service>
 ```
 
-[services.config](img/2.png)
+![services.config](img/2.png)
 
-3.	Добавить в файле `Terrasoft.WebApp/Web.config` код:
+Добавить в файле `Terrasoft.WebApp/Web.config` код:
 
 ```
   <location path="ServiceModel/GetCallerOwnerService.svc">
@@ -30,6 +30,6 @@
   </location>
 ```
 
-[Web.config](img/3.png)
+![Web.config](img/3.png)
    
 
