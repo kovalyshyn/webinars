@@ -6,7 +6,7 @@
 
 Добавить в файле `Terrasoft.WebApp/ServiceModel/https/services.config` код
 
-```
+```XML
 	<service name="Terrasoft.Configuration.GetCallerOwnerService.GetCallerOwnerService">
 		<endpoint name="GetCallerOwnerServiceEndPoint"
 			address="" 
@@ -21,7 +21,7 @@
 
 Добавить в файле `Terrasoft.WebApp/Web.config` код:
 
-```
+```XML
   <location path="ServiceModel/GetCallerOwnerService.svc">
     <system.web>
       <authorization>
