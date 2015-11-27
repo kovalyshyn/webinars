@@ -1,7 +1,8 @@
 # GetCallerOwnerService
 
-Установить файл [GetCallerOwnerService+Mob.md](GetCallerOwnerService+Mob.md) в `Terrasoft.WebApp/ServiceModel/`
-![GetCallerOwnerService+Mob.md](img/1.png)
+Установить файл [GetCallerOwnerService.svc](GetCallerOwnerService.svc) в `Terrasoft.WebApp/ServiceModel/`
+
+![GetCallerOwnerService.svc](img/1.png)
 
 Добавить в файле `Terrasoft.WebApp/ServiceModel/https/services.config` код
 
